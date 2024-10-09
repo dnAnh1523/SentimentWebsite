@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Sentiment Analysis Website</title>
+</head>
+<body>
+    <header>
+        <h1>
+            <span>Chào mừng đến với</span>
+            <span class="typing-text"></span>
+        </h1>
+    </header>
+    <main>
+        <form id="commentForm">
+            <textarea id="comment" rows="4" cols="50" class="input" placeholder="Nhập bình luận của bạn"></textarea>
+            <br><br>
+            <button class="pushable" type="button" onclick="submitComment()">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front"> Dự đoán </span>
+            </button>
+        </form>
+        <p id="result"></p>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const typingText = document.querySelector('.typing-text');
+            const text = " Website phân tích cảm xúc"; // Đoạn văn cần gõ
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    typingText.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, 100); // Thời gian giữa các ký tự
+                } 
+            }
+
+            type(); // Khởi động hiệu ứng gõ chữ
+        });
+        function submitComment() {
+            const comment = document.getElementById('comment').value;
+            if (comment.trim() === '') {
+                alert('Vui lòng nhập bình luận trước khi dự đoán.');
+                return;
+            }
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ comment: comment }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').textContent = 'Dự đoán: ' + data.prediction;
+            })
+            .catch((error) => {
+                document.getElementById('result').textContent = 'Đã xảy ra lỗi: ' + error;
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
