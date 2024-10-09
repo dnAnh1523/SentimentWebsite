@@ -11,11 +11,11 @@ Dự án này được phát triển nhằm xây dựng một hệ thống phân
 - Giao diện người dùng thân thiện cho việc nhập và nhận kết quả dự đoán.
 
 ## Công nghệ sử dụng
-- **Python**: Ngôn ngữ lập trình chính cho dự án.
-- **TensorFlow**: Thư viện để xây dựng và huấn luyện mô hình học sâu.
-- **Gensim**: Thư viện để xử lý vector nhúng từ văn bản.
-- **Underthesea**: Thư viện cho việc phân tách từ tiếng Việt.
-- **HTML/CSS**: Để xây dựng giao diện người dùng.
+- Python: Ngôn ngữ lập trình chính cho dự án.
+- TensorFlow: Thư viện để xây dựng và huấn luyện mô hình học sâu.
+- Gensim: Thư viện để xử lý vector nhúng từ văn bản.
+- Underthesea: Thư viện cho việc phân tách từ tiếng Việt.
+- HTML/CSS: Để xây dựng giao diện người dùng.
 
 ## Cài đặt
 1. Clone repository:
